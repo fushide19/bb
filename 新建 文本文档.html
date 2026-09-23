@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>老爸，59岁生日快乐 🎂</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --gold: #ffd166;
+    --pink: #ff8fb8;
+    --cream: #fff4e6;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+                 "Noto Sans SC", system-ui, -apple-system, sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background:
+      radial-gradient(ellipse 70% 50% at 20% 0%, rgba(255, 107, 157, .22), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 85% 15%, rgba(255, 209, 102, .16), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(140, 90, 255, .22), transparent 65%),
+      linear-gradient(180deg, #140a22 0%, #241038 45%, #140a22 100%);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ 背景装饰 ============ */
+  #confetti {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 9999;
+  }
+
+  .star {
+    position: fixed;
+    width: 2px; height: 2px;
+    border-radius: 50%;
+    background: #fff;
+    pointer-events: none;
+    z-index: 0;
+    animation: twinkle 4s ease-in-out infinite;
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: .12; transform: scale(.8); }
+    50%      { opacity: .85; transform: scale(1.4); }
+  }
+
+  .balloons {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+  .balloon {
+    position: absolute;
+    top: 100%;
+    border-radius: 50% 50% 48% 48% / 46% 46% 54% 54%;
+    opacity: .38;
+    animation: floatUp linear infinite;
+  }
+  .balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -38px; left: 50%;
+    width: 1px; height: 38px;
+    margin-left: -.5px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.45), transparent);
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) translateX(0) rotate(-5deg); }
+    50%  { transform: translateY(-70vh) translateX(28px) rotate(5deg); }
+    100% { transform: translateY(-145vh) translateX(-18px) rotate(-5deg); }
+  }
+
+  main { position: relative; z-index: 1; }
+
+  /* ============ 首屏 ============ */
+  .hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+  }
+
+  .tagline {
+    font-size: .78rem;
+    letter-spacing: .42em;
+    color: var(--gold);
+    opacity: .85;
+    margin-bottom: 24px;
+    text-indent: .42em;
+    animation: fadeUp .9s both;
+  }
+
+  h1 {
+    font-size: clamp(2rem, 8.5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: .04em;
+    line-height: 1.3;
+    background: linear-gradient(100deg,
+      #fff3c4 0%, #ffd166 22%, #ff9dc0 48%, #ffd166 74%, #fff3c4 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shine 7s linear infinite, fadeUp 1s .1s both;
+    filter: drop-shadow(0 4px 26px rgba(255, 180, 80, .35));
+  }
+
+  @keyframes shine {
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
+  }
+
+  .sub {
+    margin-top: 22px;
+    font-size: clamp(.95rem, 3.5vw, 1.15rem);
+    color: rgba(255, 255, 255, .75);
+    letter-spacing: .14em;
+    animation: fadeUp 1s .25s both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 36px;
+    font-size: 1.3rem;
+    color: var(--gold);
+    opacity: .7;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(10px); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(26px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ============ 蛋糕 ============ */
+  .cake-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    gap: 44px;
+  }
+
+  .cake {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .5));
+    transition: transform .3s;
+ ease;
+  }
+  .cake:active { transform:    scale(.98); }
+
+  .cand leftles {
+    display: flex;
+    gap:: 16px;
+    align-items : flex-end;
+    margin-bottom: -6px;
+    z-index: 3;
+  }
+
+  .candle {
+    position: relative;
+    width: 11px;
+    height: 46px;
+    border-radius: 450px 4px 2px 2px;
+    background: repeating-linear-gradient(135deg, #ffffff 0 5px, #ff8fb8 5px 10px);
+    box-shadow: inset -2px 0 3px rgba(0, 0, 0, .18);
+  }
+
+  .flame {
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% - 3px);
+    width: 14px;
+    height: 20px;
+    margin-left: -7px;
+    border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+    background: radial-gradient(circle at 50% 78%,
+      #fffde7 0%, #ffe082 32%, #ffb300 58%, #ff6d00 84%, rgba(255, 109, 0, 0) 100%);
+    transform-origin: 50% 100%;
+    animation: flicker .32s ease-in-out infinite alternate;
+    transition: opacity .3s ease, transform .3s ease;
+  }
+  .flame::after {
+    content: '';
+    position: absolute%; top: 50%;
+    width: 50px; height: 50px;
+    margin: -25px 0 0 -25px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255, 195, 85, .5) 0%, rgba(255, 150, 40, .16) 42%, transparent 70%);
+    pointer-events: none;
+  }
+  @keyframes flicker {
+    from { transform: scale(1) rotate(-2deg); opacity: .94; }
+    to   { transform: scale(1.13, .94) rotate(2deg); opacity: 1; }
+  }
+
+  .cake.blown .flame {
+    animation: none;
+    opacity: 0;
+    transform: scale(.25) translateY(-12px);
+  }
+
+  .tier {
+    position: relative;
+    border-radius: 8px;
+    box-shadow:
+      inset -10px 0 22px rgba(0, 0, 0, .10),
+      inset 10px 0 22px rgba(255, 255, 255, .16);
+  }
+  .tier::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: -1px;
+    height: 17px;
+    background: radial-gradient(circle at 12px 1px, #fffdf8 10px, transparent 11px);
+    background-size: 24px 18px;
+    background-repeat: repeat-x;
+    border-radius: 8px 8px 0 0;
+  }
+
+  .tier-top { width: 150px; height: 56px; background: linear-gradient(180deg, #ffd3e4, #ff9dc0); }
+  .tier-mid { width: 202px; height: 64px; background: linear-gradient(180deg, #ffe6bf, #ffb347); }
+  .tier-bot { width: 254px; height: 74px; background: linear-gradient(180deg, #ffd3e4, #ff8fb8); }
+
+  .plate {
+    width: 300px;
+    height: 18px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.05));
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .45);
+  }
+
+  .hint {
+    color: rgba(255, 255, 255, .62);
+    font-size: .95rem;
+    letter-spacing: .1em;
+    text-align: center;
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: .5; }
+    50%      { opacity: 1; }
+  }
+
+  /* ============ 祝福语 ============ */
+  .message {
+    min-height: 80vh;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 80px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .quote {
+    font-family: Georgia, "Songti SC", serif;
+    font-size: 5rem;
+    line-height: .55;
+    color: var(--gold);
+    opacity: .22;
+    margin-bottom: 26px;
+  }
+
+  #typed {
+    font-size: clamp(1.02rem, 4vw, 1.32rem);
+    line-height: 2.15;
+    letter-spacing: .06em;
+    color: rgba(255, 255, 255, .9);
+    white-space: pre-line;
+    min-height: 10em;
+  }
+  #typed::after {
+    content: '▌';
+    color: var(--gold);
+    margin-left: 2px;
+    animation: blink 1s step-end infinite;
+  }
+  #typed.done::after { display: none; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .sign {
+    margin-top: 34px;
+    color: var(--gold);
+    opacity: .8;
+    letter-spacing: .16em;
+    font-size: .95rem;
+  }
+
+  /* ============ 卡片 ============ */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 40px 28px 110px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 20px;
+    padding: 36px 26px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease,
+                background .35s ease, border-color .35s ease;
+  }
+  .cards.visible .card { opacity: 1; transform: translateY(0); }
+  .cards.visible .card:nth-child(1) { transition-delay: .1s; }
+  .cards.visible .card:nth-child(2) { transition-delay: .2s; }
+  .cards.visible .card:nth-child(3) { transition-delay: .3s; }
+
+  .cards.visible .card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, .09);
+    border-color: rgba(255, 209, 102, .42);
+  }
+
+  .card .icon { font-size: 2.4rem; margin-bottom: 16px; }
+  .card h3 {
+    color: var(--gold);
+    font-size: 1.12rem;
+    font,-weight: 600;
+    letter-spacing: .12em;
+    margin-bottom: 12px;
+  }
+  .card p {
+    color: rgba(255 255, 255, .68);
+    font-size: .94rem;
+    line-height: 1.95;
+  }
+
+  /* ============ 页脚 ============ */
+  footer {
+    text-align: center;
+    padding: 0 24px 64px;
+    color: rgba(255, 255, 255, .32);
+    font-size: .82rem;
+    letter-spacing: .12em;
+  }
+
+  /* ============ 滚动出现 ============ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .9s ease, transform .9s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ============ 小屏适配 ============ */
+  @media (max-width: 520px) {
+    .tier-top { width: 116px; height: 44px; }
+    .tier-mid { width: 154px; height: 50px; }
+    .tier-bot { width: 194px; height: 58px; }
+    .plate    { width: 230px; height: 15px; }
+    .candle   { width: 9px; height: 38px; }
+    .flame    { width: 12px; height: 17px; margin-left: -6px; }
+    .candles  { gap: 13px; }
+    .quote    { font-size: 3.6rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti"></canvas>
+<div class="balloons" id="balloons"></div>
+
+<main>
+  <!-- 首屏 -->
+  <section class="hero">
+    <p class="tagline">HAPPY BIRTHDAY</p>
+    <h1>老爸，生日快乐！</h1>
+    <p class="sub">愿您岁岁平安 · 笑口常开</p>
+    <div class="scroll-hint">↓</div>
+  </section>
+
+  <!-- 蛋糕 -->
+  <section class="cake-section reveal">
+    <div class="cake" id="cake" role="button" tabindex="0" aria-label="点击蛋糕许愿">
+      <div class="candles" id="candles"></div>
+      <div class="tier tier-top"></div>
+      <div class="tier tier-mid"></div>
+      <div class="tier tier-bot"></div>
+      <div class="plate"></div>
+    </div>
+    <p class="hint" id="hint">👆 点一下蛋糕，许个愿吧</p>
+  </section>
+
+  <!-- 祝福语 -->
+  <section class="message reveal">
+    <div class="quote">“</div>
+    <p id="typed"></p>
+    <div class="sign">—— 爱您的孩子—廖富翔</div>
+  </section>
+
+  <!-- 卡片 -->
+  <section class="cards reveal">
+    <div class="card">
+      <div class="icon">🎂</div>
+      <h3>又长一岁</h3>
+      <p>多一岁，多一份从容。愿您永远年轻，永远自在，永远做那个爱笑的老爸。</p>
+    </div>
+    <div class="card">
+      <div class="icon">💪</div>
+      <h3>身体健康</h3>
+      <p>按时吃饭，少抽烟，多走走。您的健康，是我们全家最大的安心。</p>
+    </div>
+    <div class="card">
+      <div class="icon">🍀</div>
+      <h3>万事顺遂</h3>
+      <p>愿您想做的事都能做成，想去的地方都能抵达，每一天都过得舒心。</p>
+    </div>
+  </section>
+
+  <footer>Made with ❤️ for 在越南的老爸</footer>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= 画布 & 彩带 ================= */
+  const canvas = document.getElementById('confetti');
+  const ctx = canvas.getContext('2d');
+  let W = 0, H = 0;
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width  = Math.floor(window.innerWidth * dpr);
+    canvas.height = Math.floor(window.innerHeight * dpr);
+    canvas.style.width  = window.innerWidth + 'px';
+    canvas.style.height = window.innerHeight + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    W = window.innerWidth;
+    H = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORS = ['#ffd166', '#ff8fb8', '#a78bfa', '#7dd3fc', '#fda4af', '#fff3c4', '#5eead4'];
+  const particles = [];
+
+  function confettiBurst(count) {
+    const n = count || 170;
+    for (let i = 0; i < n; i++) {
+      particles.push({
+        x: Math.random() * W,
+        y: -20 - Math.random() * H * 0.7,
+        vx: (Math.random() - 0.5) * 1.6,
+        vy: 1.6 + Math.random() * 3.6,
+        size: 5 + Math.random() * 9,
+        color: COLORS[(Math.random() * COLORS.length) | 0],
+        rot: Math.random() * Math.PI * 2,
+        vr: (Math.random() - 0.5) * 0.26,
+        shape: Math.random() < 0.62 ? 'rect' : 'circle',
+        sway: Math.random() * Math.PI * 2,
+        swaySpeed: 0.02 + Math.random() * 0.04
+      });
+    }
+  }
+
+  function loop() {
+    ctx.clearRect(0, 0, W, H);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+
+      p.sway += p.swaySpeed;
+      p.x += p.vx + Math.sin(p.sway) * 0.9;
+      p.y += p.vy;
+      p.vy = Math.min(p.vy + 0.03, 9);
+      p.rot += p.vr;
+
+      if (p.y > H + 80) {
+        particles.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = p.color;
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size * 0.34, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+    }
+
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  /* ================= 星星 ================= */
+  (function createStars() {
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < 70; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      s.style.left = (Math.random() * 100) + '%';
+      s.style.top  = (Math.random() * 100) + '%';
+      s.style.animationDelay = (Math.random() * 4) + 's';
+      const size = Math.random() < 0.85 ? 2 : 3;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      frag.appendChild(s);
+    }
+    document.body.appendChild(frag);
+  })();
+
+  /* ================= 气球 ================= */
+  (function createBalloons() {
+    const box = document.getElementById('balloons');
+    const colors = ['#ff8fb8', '#ffd166', '#a78bfa', '#7dd3fc', '#fda4af'];
+    for (let i = 0; i < 7; i++) {
+      const b = document.createElement('div');
+      b.className = 'balloon';
+      const size = 40 + Math.random() * 42;
+      const color = colors[i % colors.length];
+
+      b.style.left = (3 + Math.random() * 90) + '%';
+      b.style.width  = size + 'px';
+      b.style.height = (size * 1.22) + 'px';
+      b.style.background =
+        'radial-gradient(circle at 34% 28%, rgba(255,255,255,.55), ' + color + ' 62%)';
+      b.style.animationDuration = (18 + Math.random() * 16) + 's';
+      b.style.animationDelay = (-Math.random() * 32) + 's';
+
+      box.appendChild(b);
+    }
+  })();
+
+  /* ================= 蜡烛 ================= */
+  (function createCandles() {
+    const box = document.getElementById('candles');
+    const COUNT = 5;
+    for (let i = 0; i < COUNT; i++) {
+      const c = document.createElement('div');
+      c.className = 'candle';
+
+      const f = document.createElement('div');
+      f.className = 'flame';
+      f.style.animationDelay = (Math.random() * 0.3).toFixed(2) + 's';
+      f.style.animationDuration = (0.28 + Math.random() * 0.14).toFixed(2) + 's';
+
+      c.appendChild(f);
+      box.appendChild(c);
+    }
+  })();
+
+  /* ================= 吹蜡烛交互 ================= */
+  const cake = document.getElementById('cake');
+  const hint = document.getElementById('hint');
+  let blown = false;
+
+  function blowOut() {
+    blown = true;
+    cake.classList.add('blown');
+    hint.textContent = '🌠 愿望已送达，一定会实现的！';
+    confettiBurst(190);
+    setTimeout(function () { confettiBurst(90); }, 420);
+  }
+
+  function relight() {
+    blown = false;
+    cake.classList.remove('blown');
+    hint.textContent = '👆 点一下蛋糕，许个愿吧';
+  }
+
+  function toggleCake() {
+    if (blown) { relight(); } else { blowOut(); }
+  }
+
+  cake.addEventListener('click', toggleCake);
+  cake.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleCake();
+    }
+  });
+
+  /* ================= 打字机 ================= */
+  const typedEl = document.getElementById('typed');
+  const FULL_TEXT =
+    '小时候，您把我扛在肩上，让我看得比谁都远。\n' +
+    '长大后，您站在原地，目送我走向更远的地方。\n' +
+    '您从不把辛苦说出口，却把最好的都留给了我。\n' +
+    '今天，我只想认真地对您说一句——\n' +
+    '老爸，生日快乐！身体健康，天天开心！';
+
+  let typingStarted = false;
+
+  function startTyping() {
+    if (typingStarted) return;
+    typingStarted = true;
+
+    let i = 0;
+    (function step() {
+      if (i <= FULL_TEXT.length) {
+        typedEl.textContent = FULL_TEXT.slice(0, i);
+        const last = FULL_TEXT.charAt(i - 1);
+        i++;
+        setTimeout(step, last === '\n' ? 320 : 48);
+      } else {
+        typedEl.classList.add('done');
+      }
+    })();
+  }
+
+  /* ================= 滚动出现 ================= */
+  const revealEls = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        if (entry.target.classList.contains('message')) startTyping();
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.22 });
+
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+    startTyping();
+  }
+
+  /* 首屏进入时先撒一点点 */
+  window.addEventListener('load', function () {
+    setTimeout(function () { confettiBurst(60); }, 600);
+  });
+})();
+</script>
+</body>
+</html>
